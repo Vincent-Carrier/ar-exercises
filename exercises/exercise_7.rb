@@ -9,4 +9,11 @@ require_relative './exercise_6'
 puts "Exercise 7"
 puts "----------"
 
-# Your code goes here ...
+puts "Enter store name:"
+name = gets.chomp
+store = Store.create(name: name)
+begin
+  store.save!
+rescue ActiveRecord::RecordInvalid => invalid
+  puts invalid.record.errors
+end
